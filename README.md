@@ -9,7 +9,7 @@ Este projeto consiste em uma aplicação web que funciona como uma Pokédex, exi
 Este projeto foi desenvolvido utilizando as seguintes tecnologias:
 
 - **Vue** 
-- **Vue**
+- **Vite**
 - **JavaScript**
 - **Bootstrap**
 - **HTML**
@@ -36,9 +36,7 @@ Execute o seguinte comando para rodar o projeto:
 
 `npm run dev`
 
- **Atenção:** Mantenha o JSON Server rodando no terminal para que os dados da API sejam carregados e visualizados corretamente no projeto.
-
-#### 7. Acesse a aplicação: 
+#### 3. Acesse a aplicação: 
 Após executar o comando, a aplicação Vue deverá estar acessível em http://localhost:5173 e estará consumindo dados da API.
 
 ### Funcionalidades:
