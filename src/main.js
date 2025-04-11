@@ -3,7 +3,7 @@ import { createI18n } from 'vue-i18n';
 import './style.css'
 import App from './App.vue'
 import { createRouter, createWebHistory } from 'vue-router';
-import HomePage from './components/HomePage.vue';
+import HomePage from './components/homePage.vue';
 import PokemonPage from './components/pagePokemonSelected.vue';
 
 const routes = [
