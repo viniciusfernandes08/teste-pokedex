@@ -1,5 +1,6 @@
 <script setup>
-import { onMounted, reactive, ref, computed } from 'vue';
+import { onMounted, reactive, ref, computed, watch } from 'vue';
+import { useI18n } from 'vue-i18n';
 import { useRouter } from 'vue-router';
 import { debounce } from 'lodash';
 import pokemonsList from './pokemonsList.vue';
@@ -9,6 +10,13 @@ let urlPokemonPhotos = ref("https://raw.githubusercontent.com/PokeAPI/sprites/ma
 let pokemons = reactive({ list: [] });
 let filterPokemons = ref("");
 let router = useRouter();
+let { locale } = useI18n();
+let selectedLanguage = ref(locale.value);
+
+//watch observa o selectedLanguage e atualiza o valor de newLocale conforme o usuário seleciona o idioma
+watch(selectedLanguage, (newLocale) => {
+  locale.value = newLocale;
+});
 
 //Função para debouncing da busca, 500ms após o usuário terminar de digitar
 const debouncedFilter = debounce((value) => {
@@ -77,6 +85,12 @@ const handleSearch = (event) => {
       />
     </div>
 
+    <select v-model="selectedLanguage" class="my-2 m-auto bg-body-secondary rounded-1 shadow-none">
+      <option value="en">English</option>
+      <option value="pt">Português</option>
+      <option value="es">Español</option>
+    </select>
+
     <div class="mb-3">
       <label for="filterPokemons" hidden class="form-label"></label>
       <input 
@@ -84,7 +98,7 @@ const handleSearch = (event) => {
         type="text" 
         class="form-control m-auto bg-body-secondary shadow-none w-75 w-md-50 w-lg-25" 
         id="filterPokemons" 
-        placeholder="Pesquisar"
+        :placeholder="$t('search')"
       />
     </div>
 

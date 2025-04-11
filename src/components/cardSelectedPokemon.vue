@@ -1,8 +1,10 @@
 <script setup>
   import iconeFechar from '../assets/icons8-x-50.png';
+  import { useI18n } from 'vue-i18n';
   import { useRouter } from 'vue-router';
 
   let router = useRouter();
+  let { t } = useI18n();
 
   const props = defineProps({
     name: String,
@@ -43,8 +45,8 @@
         height="100"
       />
       <div class="d-flex justify-content-center px-5 flex-md gap-2 justify-content-md-center gap-md flex-grow-1 flex-column-small">
-         <section class="w-100 d-flex flex-column align-items-center border border-light">
-           <strong class="fs-4">Sprites:</strong>
+         <section class="w-100 d-flex flex-column align-items-center border border-light py-2">
+           <strong class="fs-4">{{ t('sprites') }}</strong>
            <div class="d-flex flex-column align-items-center" style="max-width: 600px;">
               <div class="d-flex w-100 justify-content-center">
                 <div class="d-flex flex-column">
@@ -71,7 +73,7 @@
            </div>
          </section>
          <section class="w-100 d-flex flex-column align-items-center border border-light py-2">
-           <strong class="fs-4">Movimentos de ataque:</strong>
+           <strong class="fs-4">{{ t('moves') }}</strong>
            <div
            class="moves-container d-flex flex-column align-items-center px-4"
            style="max-height: 400px; overflow-y: auto; max-width: 600px"
@@ -79,15 +81,15 @@
                <p v-for="(move, index) in moves" :key="index" class="fs-5">{{ move }}</p>
            </div>
          </section>
-         <section class="w-100 d-flex flex-column align-items-center border border-light">
-           <strong class="fs-4">Evoluções:</strong>
+         <section class="w-100 d-flex flex-column align-items-center border border-light py-2">
+           <strong class="fs-4">{{ t('evolutions') }}</strong>
            <span v-if="evolutions && evolutions.length > 0">
                <p v-for="(evolution, index) in evolutions" :key="index" class="fs-5">{{ evolution }}</p>
            </span>
-           <span v-else>Nenhuma evolução</span>
+           <span v-else>{{ t('noEvolutions') }}</span>
          </section>
          <section class="w-100 d-flex flex-column align-items-center border border-light py-2">
-           <strong class="fs-4">Games:</strong>
+           <strong class="fs-4">{{ t('games') }}</strong>
            <div 
             v-if="games && games.length > 0" 
             class="games-container d-flex flex-column align-items-center px-4"
