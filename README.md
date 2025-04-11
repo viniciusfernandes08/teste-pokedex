@@ -6,6 +6,8 @@ Este projeto consiste em uma aplicação web que funciona como uma ***Pokédex**
 
 Ao clicar no pokemon o usuário é redirecionado para uma página que contém o detalhamento de cada pokemon com **sprites**, **movimentos de ataque**, **evoluções** e os **game_indices** em que o Pokémon está presente.
 
+Link da aplicação no ![Vercel](https://teste-pokedex-vue.vercel.app/)
+
 ![Print da aplicação](./src/assets/projeto-pokedex.jpg)
 
 ## Tecnologias
