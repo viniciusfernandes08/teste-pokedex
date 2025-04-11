@@ -1,6 +1,7 @@
 <script setup>
 import { onMounted, reactive, ref, computed } from 'vue';
 import { useRouter } from 'vue-router';
+import { debounce } from 'lodash';
 import pokemonsList from './pokemonsList.vue';
 import logoPokemon from '../assets/logo-pokemon.png';
 
@@ -9,7 +10,13 @@ let pokemons = reactive({ list: [] });
 let filterPokemons = ref("");
 let router = useRouter();
 
+//Função para debouncing da busca, 500ms após o usuário terminar de digitar
+const debouncedFilter = debounce((value) => {
+  filterPokemons.value = value;
+}, 500);
+
 onMounted(() => {
+  //Função para buscar os pokemons na API
   try {
     fetch("https://pokeapi.co/api/v2/pokemon?limit=100000&offset=0")
       .then(res => res.json())
@@ -29,6 +36,7 @@ onMounted(() => {
   }
 });
 
+//Função para filtrar pokemons por nome, ID, tipo e espécie
 const filteredPokemons = computed(() => {
   if (filterPokemons.value) {
     return pokemons.list.filter(pokemon => {
@@ -47,9 +55,16 @@ const filteredPokemons = computed(() => {
   return pokemons.list;
 });
 
+//Função para selecionar um pokemon e enviar para outra tela para ver os detalhes
 const selectPokemon = async (pokemon) => {
   router.push({ name: 'Pokemon', params: { id: pokemon.url.split('/')[6] } });
 };
+
+// Função para lidar com o evento de digitação no filtro
+const handleSearch = (event) => {
+  debouncedFilter(event.target.value);
+};
+
 </script>
 
 <template>
@@ -65,7 +80,7 @@ const selectPokemon = async (pokemon) => {
     <div class="mb-3">
       <label for="filterPokemons" hidden class="form-label"></label>
       <input 
-        v-model="filterPokemons"
+        v-on:input="handleSearch"
         type="text" 
         class="form-control m-auto bg-body-secondary shadow-none w-75 w-md-50 w-lg-25" 
         id="filterPokemons" 

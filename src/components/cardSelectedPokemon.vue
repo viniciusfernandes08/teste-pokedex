@@ -15,7 +15,8 @@
     games: Array,
     evolutions: Array
   })
-
+  
+  // Chama quando clica no ícone de fechar
   const backToHome = () => {
     router.push('/');
   }
@@ -29,6 +30,7 @@
       :src="iconeFechar" 
       class="position-absolute top-0 end-0 mt-3 me-5 cursor-pointer icone-md"
       @click="backToHome()"
+      alt="Fechar"
       >
     </div>
     <div class="w-100 h-100">
@@ -49,21 +51,21 @@
                   <img 
                   v-if="props.spriteBack"
                   :src="props.spriteBack"
-                  style="height: 150px;">
+                  class="sprite-image">
                   <img 
                   v-if="props.spriteBackS"
                   :src="props.spriteBackS" 
-                  style="height: 150px;">
+                  class="sprite-image">
                 </div>
                 <div class="d-flex flex-column">
                   <img 
                   v-if="props.spriteFront"
                   :src="props.spriteFront" 
-                  style="height: 150px;">
+                  class="sprite-image">
                   <img 
                   v-if="props.spriteFrontS"
                   :src="props.spriteFrontS" 
-                  style="height: 150px;">
+                  class="sprite-image">
                 </div>
               </div>
            </div>
@@ -112,6 +114,10 @@
     background: radial-gradient(circle, rgba(80,206,243,1) 40%, rgba(144,144,240,1) 85%, rgba(183,80,242,1) 100%);
     min-height: 100vh;
     flex-grow: 1;
+  }
+
+  .sprite-image {
+    height: 150px;
   }
 
   .cursor-pointer {
